@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eo pipefail
+shopt -s nullglob
+
+cd $WORKDIR/PPGo_amaze/; sleep 3
+nohup ./PPGo_amaze 2>&1 >> info.log 2>&1 /dev/null &
+tail -f /dev/null
