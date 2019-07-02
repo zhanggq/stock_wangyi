@@ -24,7 +24,9 @@
 
 - 服务器上需要安装Mysql。或者仅安装Mysql-client，Server使用容器来启动（可以参考我的[mysql5.7](https://github.com/zhanggq/mysql5.7)）
 
-## 镜像打包
+## 镜像制作
+
+在服务器上执行下列命令：
 
 ```Bash
 # git clone https://github.com/zhanggq/stock_wangyi.git
@@ -43,12 +45,16 @@
 
 假设使用我的[mysql5.7](https://github.com/zhanggq/mysql5.7)，可以按照如下方式启动
 
+在服务器上执行下列命令：
+
 ```Bash
 # mkdir -p /home/lib/mysql/wangyi
 # docker run -d -p 13306:3306 --name mysqlv5.7 -P -e mysqld -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=testDb -v /home/lib/mysql/wangyi:/var/lib/mysql mysql:v5.7
 ```
 
 ## 准备库与用户
+
+在服务器上执行下列命令：
 
 ```Bash
 # mysql -uroot -p123456 -h 127.0.0.1 -P13306 -e "create database hcs character set utf8 collate utf8_bin;"
@@ -60,13 +66,16 @@
 
 ## 导入数据
 
+在服务器上执行下列命令：
+
 ```Bash
 # cd stock_wangyi/sql
 # for SQL in *.sql; do mysql -uroot -p123456 -h 127.0.0.1 -P13306 hcs < $SQL; done
-# mysql -uroot -p123456 -h 127.0.0.1 -P13306 -e "flush privileges;"
 ```
 
 ## 检查导入结果
+
+在服务器上执行命令：
 
 ```Bash
 # mysql -uroot -p123456 -h 127.0.0.1 -P13306 hcs  -e "show tables"
@@ -74,14 +83,23 @@
 
 ## Mysql容器验证通过后，启动stock容器
 
+在服务器上执行命令：
+
 ```Bash
 # docker run --privileged -tid -h wangyi --name=wangyi --net=host --restart=always stock_wangyi:latest
 ```
 
 ## 进入容器检查日志
 
+在服务器上执行进入容器命令：
+
 ```Bash
 # docker exec -it XXXX bash
+```
+
+进入容器后执行：
+
+```Bash
 # tail -f /PPGo_amaze/info.log
 ```
 
