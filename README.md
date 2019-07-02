@@ -27,7 +27,7 @@
 ## 镜像打包
 
 ```Bash
-# git clone git@github.com:zhanggq/stock_wangyi.git
+# git clone https://github.com/zhanggq/stock_wangyi.git
 # cd stock_wangyi
 # sh build.sh
 ```
@@ -105,4 +105,5 @@
 
 ![](https://i.imgur.com/6ukKxJp.png)
 
-注1：由于本人不爱炒上证股票，固代码中没有爬取上证股票日线数据
+注1：由于本人不爱炒上证股票，固代码中没有爬取上证股票日线数据；
+注2：作者自己腾讯云的服务器，第一次跑需要4小时才能同步完所有的数据。
